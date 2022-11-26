@@ -1,0 +1,77 @@
+<div style="min-height: 100px; padding: 20px; background-color: #fff">
+  <form [formGroup]="filterForm">
+    <div class="row">
+      <div class="two columns">
+        <div class="field">
+          <label for="states-multi" class="label">Type</label>
+          <select
+            soho-dropdown
+            name="states-multi"
+            multiple
+            [closeOnSelect]="false"
+            maxSelected="3"
+            [value]="'DayLegend'"
+          >
+            <option value="DayLegend">DayLegend</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="two columns">
+        <div class="field">
+          <label for="statechange" class="label">Start</label>
+          <input
+            formControlName="startDate"
+            soho-datepicker
+            name="statechange"
+            dateFormat="MM/dd/yyyy"
+            mode="standard"
+            placeholder="MM/dd/yyyy"
+          />
+        </div>
+      </div>
+      <div class="two columns">
+        <div class="field">
+          <label for="statechange" class="label">End</label>
+          <input
+            formControlName="endDate"
+            soho-datepicker
+            name="statechange"
+            dateFormat="MM/dd/yyyy"
+            mode="standard"
+            placeholder="MM/dd/yyyy"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row" formArrayName="daysOfWeek">
+      <div
+        class="two columns"
+        *ngFor="let day of getDaysOfWeek().controls; let itemIndex = index"
+      >
+        <div class="switch" [formGroupName]="itemIndex">
+          <input
+            formControlName="isChecked"
+            soho-checkbox
+            type="checkbox"
+            [switch]="true"
+            [attr.id]="day.value['name']"
+            name="switch2"
+          />
+          <label
+            soho-label
+            [attr.for]="day.value['name']"
+            [forCheckBox]="true"
+            >{{ day.value["name"] }}</label
+          >
+        </div>
+      </div>
+    </div>
+    <div class="align-right">
+      <button soho-button (click)="save()">Save</button>
+    </div>
+  </form>
+</div>

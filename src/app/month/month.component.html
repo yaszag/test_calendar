@@ -1,0 +1,19 @@
+
+<app-filter-component></app-filter-component>
+
+<div
+  soho-calendar
+  [month]="initialMonth"
+  [year]="initialYear"
+  [showViewChanger]="showViewChanger"
+  [selectedCallback]="onCalendarDateSelectedCallback"
+  [firstDayOfWeek]="1"
+  (monthRendered)="onRenderMonth($event)"
+  (dblclick)="dblClick($event)" 
+  [eventTooltip]="eventTooltip"
+  [iconTooltip]="iconTooltip"
+  [disable]="disable"
+>
+  <div soho-calendar-monthview></div>
+  <div soho-calendar-week-view></div>
+</div>
